@@ -7,9 +7,9 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-var client_id = "" // Your client id
-var client_secret = ""; // Your secret
-var redirect_uri = ""; // Your redirect uri
+var client_id = "4454442200fa431090f3055e1b335f83" // Your client id
+var client_secret = "c8bd943aaa2b400ba691db78bfb507c6"; // Your secret
+var redirect_uri = "https://script.google.com/macros/d/1tDcqtGrY9WZ7GpInWDPhVmIWTzQZ_MIp_ASXqWwNvEhBvgTDQ6SBYbtc/usercallback"; // Your redirect uri
 
 var token = authSpot();
 
