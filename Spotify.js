@@ -11,8 +11,6 @@ var client_id = "" // Your client id
 var client_secret = ""; // Your secret
 var redirect_uri = ""; // Your redirect uri
 
-console.log(client_id);
-
 var token = authSpot();
 
 function authSpot(){
