@@ -1,5 +1,4 @@
 let sheet = SpreadsheetApp.getActiveSheet();
-let APIKEY = "&key=AIzaSyBYvH6anO86XYenpRxbe_fa0ysduMSNo5Y"
 
 function getArtistIDs(){
   /** 
@@ -137,35 +136,3 @@ function exceltoGEOJSON(){
     };
   };
 };
-
-//function spotifyAPI() {
-//  var spotify_creds = new Object();
-//
-//  spotify_creds.id = prompt("Enter your Spotify Client ID");
-//  spotify_creds.secret = prompt("Enter your Spotify Client Secret");
-//  spotify_creds.redirect = prompt("Enter your Spotify redirect URI");
-//
-//  return spotify_creds;
-//};
-
-
-/*function mapVenues(){
-  let map = Maps.newStaticMap()
-  .setCenter(-37.813601, 144.963101)
-  .setZoom(10)
-  .beginPath();
-  
-  let address_list = sheet.getRange("B2:B").getValues();
-  Logger.log(address_list[0])
-  for (i=0; i < 20; i++){
-    map.addAddress(address_list[i].join("+"))
-       .addMarker(address_list[i]);
-  };
-  map.endPath()
-  let url = map.getMapUrl() + APIKEY;
-  let content = HtmlService
-      .createHtmlOutput(url)
-      .setTitle('Map of venues');
-  SpreadsheetApp.getUi()
-      .showSidebar(content);
-};*/
