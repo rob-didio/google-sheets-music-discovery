@@ -1,32 +1,40 @@
+/** google-sheets-music-discovery - A fun way to discover, catalogue, and
+ * rate new music through Google Sheets using Apps Script.
+ *
+ * Rob DiDio - Dec 9th 2020
+ * github: rob-didio
+ */
+
 const RIYL_MAX = 3;
 const LOW_COL = "A";
 const HIGH_COL = ":I";
 
 let sheet = SpreadsheetApp.getActiveSheet();
 
+/**getArtistIDs - Grabs Finds Spotify Artist IDs based off
+ *   of an artist name, writes to row
+ */
 function getArtistIDs() {
-  /** 
-  Grabs artist names from col 1 and finds Spotify Artist IDs, writes to Spotify ID col
-   *
-  BREAK OUT TO HELPER FUNCTIONS
-   *
-  return None
-   */
+  // Creates a list of artist objects from rows selected
   let artistList = artistBuild(sheet);
   let artistIDList = [];
 
+  // Gets a JSON of the artist from Spotify
   for (i = 0; i < artistList.length; i++) {
     let artistJSON = querySpot(
       artistList[i].name.split(" ").join("+"),
       "artist"
     );
 
+    // We just add "N/A" if there is no response
     if (
       (artistJSON.artists.items == undefined) |
       (artistJSON.artists.items.length == 0)
     ) {
       artistIDList.push("N/A");
       artistList[i].spotID = "N/A";
+
+      // Adds Spotify ID to respective artist objects
     } else {
       let artistID = artistJSON.artists.items[0].id;
       artistList[i].spotID = artistJSON.artists.items[0].id;
@@ -37,14 +45,10 @@ function getArtistIDs() {
   writeRows(artistList);
 }
 
+/**riyl - Gets top three similar artists from Spotify Artist ID and writes
+ * them to the row
+ */
 function riyl() {
-  /*
-  Gets top three similar artists from Spotify Artist ID and adds them to RIYL column
-  *
-  NOT FINISHED
-  *  
-  return None
-  */
   let artistList = artistBuild(sheet);
   for (i = 0; i < artistList.length; i++) {
     riyl = getSimilarArtists(artistList[i]);
@@ -55,12 +59,19 @@ function riyl() {
   writeRows(artistList);
 }
 
+/**getSimilarArtists - Query's spotify for the top three related artists
+ * using a Spotify ID.
+ *
+ * @param {*} artist - artist object;
+ */
 function getSimilarArtists(artist) {
   let riylIn = [];
   if (artist.spotID == "N/A") {
   } else {
+    // Gets a JSON of related-artists
     riyl = artistSpot(artist.spotID, "related-artists");
     for (e = 0; e < riyl.artists.length; e++) {
+      // There can be hundreds of them so we cap it at RIYL_MAX
       if (e >= RIYL_MAX) {
         break;
       } else {
@@ -71,12 +82,9 @@ function getSimilarArtists(artist) {
   return riylIn;
 }
 
+/* writeRows - Writes full rows of new data to the active range
+ */
 function writeRows(data) {
-  /* 
-  Writes full rows with new data to the active range
-  *  
-  return None
-  */
   let last_row = sheet.getActiveRange().getLastRow();
   let first_row = last_row - sheet.getActiveRange().getHeight() + 1;
   let j = 0;
