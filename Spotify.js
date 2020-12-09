@@ -8,9 +8,9 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-var client_id = ""; // Your client id
-var client_secret = ""; // Your secret
-var redirect_uri = ""; // Your redirect uri
+var client_id = userProps.getProperty("SPOTIFY_CLIENT_ID"); // Your client id
+var client_secret = userProps.getProperty("SPOTIFY_SECRET_ID"); // Your secret
+var redirect_uri = userProps.getProperty("SPOTIFY_REDIRECT_URI"); // Your redirect uri
 
 var token = authSpot();
 
