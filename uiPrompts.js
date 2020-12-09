@@ -1,7 +1,3 @@
-function onOpen() {
-  uiUserPropsMenu();
-}
-
 function uiUserPropsMenu() {
   var userPropsMenu = ui
     .createAddonMenu()

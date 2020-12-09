@@ -97,3 +97,8 @@ function writeRows(data) {
     j++;
   }
 }
+
+function atOpen() {
+  uiUserPropsMenu();
+}
+
