@@ -84,7 +84,10 @@ function getSimilarArtists(artist) {
   return riylIn;
 }
 
-/* writeRows - Writes full rows of new data to the active range
+/**
+ * writeRows - Writes full rows of new data to the active range
+ *
+ * @param {*} data - row of data we are writing.
  */
 function writeRows(data) {
   let last_row = sheet.getActiveRange().getLastRow();
@@ -98,7 +101,10 @@ function writeRows(data) {
   }
 }
 
+/**
+ * atOpen - Trigger for opening. We can't use onOpen since we're accessing UI
+ * elements. They out of scope for that simple trigger.
+ */
 function atOpen() {
   uiUserPropsMenu();
 }
-
