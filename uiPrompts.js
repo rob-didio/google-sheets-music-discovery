@@ -1,4 +1,5 @@
-/** uiPrompts.js - Everything to do with the dropdown menu in "Add-Ons"
+/**
+ * uiPrompts.js - Everything to do with the dropdown menu in "Add-Ons"
  *
  * Rob DiDio - Dec 9th 2020
  * github - https://github.com/rob-didio/google-sheets-music-discovery

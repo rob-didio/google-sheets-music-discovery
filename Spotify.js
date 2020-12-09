@@ -35,8 +35,7 @@ function authSpot() {
   return token;
 }
 
-/** Code below this line wrtten by Rob DiDio
- */
+/** Code below this line wrtten by Rob DiDio */
 
 /**
  * querySpot - Queries spotify using their Web API, used here primarily to get
