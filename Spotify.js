@@ -3,6 +3,7 @@
  * the Authorization Code oAuth2 flow to authenticate against
  * the Spotify Accounts.
  *
+ *
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
@@ -35,10 +36,16 @@ function authSpot() {
   return token;
 }
 
+/** Code below this line wrtten by Rob DiDio
+ */
+
+/** querySpot - Queries spotify using their Web API, used here primarily to get
+ * an artist ID
+ *
+ * @param {*} q - plain text artist name
+ * @param {*} type - type of ID we want back ex. "artist"
+ */
 function querySpot(q, type) {
-  /**
-  Returns JSON object from Spotify Search API query
-  */
   var url =
     "https://api.spotify.com/v1/search?q=" + q + "&type=" + type + "&limit=1";
   var params = {
@@ -51,6 +58,12 @@ function querySpot(q, type) {
   var res = JSON.parse(UrlFetchApp.fetch(url, params));
   return res;
 }
+
+/** artistSpot - Access the Artist Spotify API via an Artist ID,
+ *
+ * @param {*} id - Spotify Artist ID
+ * @param {*} type - data string we want ex. "related-artists"
+ */
 
 function artistSpot(id, type) {
   var url = "https://api.spotify.com/v1/artists/" + id + "/" + type;
