@@ -10,6 +10,8 @@ const LOW_COL = "A";
 const HIGH_COL = ":I";
 
 let sheet = SpreadsheetApp.getActiveSheet();
+let userProps = PropertiesService.getUserProperties();
+let ui = SpreadsheetApp.getUi();
 
 /**getArtistIDs - Grabs Finds Spotify Artist IDs based off
  *   of an artist name, writes to row
