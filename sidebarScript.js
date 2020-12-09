@@ -1,11 +1,11 @@
 function runSpotSidebar() {
   /*
-    Opens a Spotify Play Button of top tracks from highlighted Artist ID
+    Opens a Spotify Play Button of top tracks from highlighted Artist row
   */
-  let artID = SpreadsheetApp.getCurrentCell().getDisplayValue();
+  let artist = SpreadsheetApp.getActiveRange().getValues();
   let frame = "".concat(
     '<iframe src="https://open.spotify.com/embed/artist/' +
-      artID +
+      artist[0][8] +
       '" width="290" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
   );
   let content = HtmlService.createHtmlOutput(frame).setTitle(
