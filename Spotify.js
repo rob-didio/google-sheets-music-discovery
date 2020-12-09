@@ -7,13 +7,13 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-var client_id = "" // Your client id
+var client_id = ""; // Your client id
 var client_secret = ""; // Your secret
 var redirect_uri = ""; // Your redirect uri
 
 var token = authSpot();
 
-function authSpot(){
+function authSpot() {
   /**
   Implicit Grant authetication with Spotify Web API
   *
@@ -21,37 +21,45 @@ function authSpot(){
   */
   var url = "https://accounts.spotify.com/api/token";
   var params = {
-  method: "post",
-  headers: {"Authorization" : "Basic " + Utilities.base64Encode(client_id + ":" + client_secret)},
-  payload: {grant_type: "client_credentials"},
+    method: "post",
+    headers: {
+      Authorization:
+        "Basic " + Utilities.base64Encode(client_id + ":" + client_secret),
+    },
+    payload: { grant_type: "client_credentials" },
   };
   var res = UrlFetchApp.fetch(url, params);
   var obj = JSON.parse(res.getContentText());
   var token = obj.access_token;
   return token;
-};
+}
 
-function querySpot(q, type){
+function querySpot(q, type) {
   /**
   Returns JSON object from Spotify Search API query
   */
-  var url = "https://api.spotify.com/v1/search?q="+ q + "&type=" + type + "&limit=1"; 
+  var url =
+    "https://api.spotify.com/v1/search?q=" + q + "&type=" + type + "&limit=1";
   var params = {
-    headers: {"Accept": "application/json", 
-              "Content-Type" : "application/json", 
-              "Authorization": "Bearer " + token}
-             };
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  };
   var res = JSON.parse(UrlFetchApp.fetch(url, params));
   return res;
-};
+}
 
-function artistSpot(id, type){
+function artistSpot(id, type) {
   var url = "https://api.spotify.com/v1/artists/" + id + "/" + type;
   var params = {
-    headers: {"Accept": "application/json", 
-              "Content-Type" : "application/json", 
-              "Authorization": "Bearer " + token}
-             };
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  };
   var res = JSON.parse(UrlFetchApp.fetch(url, params));
   return res;
-};
+}
