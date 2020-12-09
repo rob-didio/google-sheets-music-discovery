@@ -101,6 +101,11 @@ function writeRows(data) {
   }
 }
 
+function buildArtistRowFull() {
+  getArtistIDs();
+  riyl();
+}
+
 /**
  * atOpen - Trigger for opening. We can't use onOpen since we're accessing UI
  * elements. They out of scope for that simple trigger.
