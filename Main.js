@@ -2,7 +2,7 @@
  * rate new music through Google Sheets using Apps Script.
  *
  * Rob DiDio - Dec 9th 2020
- * github: rob-didio
+ * github: https://github.com/rob-didio/google-sheets-music-discovery
  */
 
 const RIYL_MAX = 3;
