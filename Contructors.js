@@ -6,14 +6,14 @@ function artistBuild(sheet) {
       name: range[i][0],
       music: range[i][1],
       notes: range[i][2],
-      rating: parseFloat(range[i][3]),
-      listeners: parseInt(range[i][4]),
+      rating: range[i][3],
+      listeners: range[i][4],
       riyl1: range[i][5],
       riyl2: range[i][6],
       riyl3: range[i][7],
       spotID: range[i][8],
     };
-    console.log("New artist added: " + artist.name);
+    console.log(`New artist added: " ${artist.name}`);
     artistList.push(artist);
   }
   return artistList;
