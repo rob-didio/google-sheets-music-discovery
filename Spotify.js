@@ -25,7 +25,7 @@ function authSpot() {
     method: "post",
     headers: {
       Authorization:
-        "Basic " + Utilities.base64Encode(client_id + ":" + client_secret),
+        "Basic " + Utilities.base64Encode(`${client_id}:${client_secret}`),
     },
     payload: { grant_type: "client_credentials" },
   };
@@ -35,7 +35,8 @@ function authSpot() {
   return token;
 }
 
-/** Code below this line wrtten by Rob DiDio */
+/** Code below this line wrtten by Rob DiDio
+ */
 
 /**
  * querySpot - Queries spotify using their Web API, used here primarily to get
@@ -45,8 +46,7 @@ function authSpot() {
  * @param {*} type - type of ID we want back ex. "artist"
  */
 function querySpot(q, type) {
-  let url =
-    "https://api.spotify.com/v1/search?q=" + q + "&type=" + type + "&limit=1";
+  let url = `https://api.spotify.com/v1/search?q=${q}&type=${type}&limit=1`;
   let params = {
     headers: {
       Accept: "application/json",
@@ -66,12 +66,12 @@ function querySpot(q, type) {
  */
 
 function artistSpot(id, type) {
-  let url = "https://api.spotify.com/v1/artists/" + id + "/" + type;
+  let url = `https://api.spotify.com/v1/artists/${id}/${type}`;
   let params = {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: `Bearer ${token}`,
     },
   };
   let res = JSON.parse(UrlFetchApp.fetch(url, params));
