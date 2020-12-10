@@ -5,6 +5,8 @@
  * github - https://github.com/rob-didio/google-sheets-music-discovery
  */
 
+const SPOTIFY_ID_LEN = 32;
+
 /**
  * uiUserPropsMenu - Makes the menu options
  */
@@ -26,8 +28,15 @@ function uiUserPropsMenu() {
  * response into userProps
  */
 function spotifyClientIDPrompt() {
-  var clientId = ui.prompt("Enter your Spotify Client ID");
-  userProps.setProperty("SPOTIFY_CLIENT_ID", clientId.getResponseText());
+  var clientId = ui.prompt(
+    `Enter your Spotify Client ID\n
+    Current: ${userProps.getProperty("SPOTIFY_CLIENT_ID")}`
+  );
+  if (clientId.length === SPOTIFY_ID_LEN) {
+    userProps.setProperty("SPOTIFY_CLIENT_ID", clientId.getResponseText());
+  } else {
+    ui.alert("Client ID entered was the wrong length, please enter again!");
+  }
 }
 
 /**
@@ -35,8 +44,12 @@ function spotifyClientIDPrompt() {
  * response into userProps
  */
 function spotifySecretPrompt() {
-  var secretId = ui.prompt("Enter your Spotify Secret");
-  userProps.setProperty("SPOTIFY_SECRET_ID", secretId.getResponseText());
+  var secretId = ui.prompt(`Enter your Spotify Secret\n Current: ${secretId}`);
+  if (secretId.length === SPOTIFY_ID_LEN) {
+    userProps.setProperty("SPOTIFY_SECRET_ID", secretId.getResponseText());
+  } else {
+    ui.alert("Secret entered was the wrong length, please enter again!");
+  }
 }
 
 /**
