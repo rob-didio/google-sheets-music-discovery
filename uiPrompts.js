@@ -18,7 +18,7 @@ function uiUserPropsMenu() {
         .createMenu("Spotify")
         .addItem("Client ID", "spotifyClientIDPrompt")
         .addItem("Secret", "spotifySecretPrompt")
-        .addItem("Redirect URI", "spotifyRedirectUriPrompt")
+        .addItem("Reset OAuth", "resetAuth")
     )
     .addToUi();
 }
@@ -52,11 +52,7 @@ function spotifySecretPrompt() {
   }
 }
 
-/**
- * spotifyRedirectUriPrompt - Menu option which saves Spotify Redirect URI
- * response into userProps
- */
-function spotifyRedirectUriPrompt() {
-  var redirectUri = ui.prompt("Enter your Spotify Redirect URI");
-  userProps.setProperty("SPOTIFY_REDIRECT_URI", redirectUri.getResponseText());
+function resetAuth() {
+  reset();
+  run();
 }
