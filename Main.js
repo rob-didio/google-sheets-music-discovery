@@ -102,7 +102,9 @@ function writeRows(data) {
 }
 
 function buildArtistRowFull() {
+  activeRange = sheet.getActiveRange();
   getArtistIDs();
+  sheet.setActiveRange(activeRange);
   riyl();
 }
 
